@@ -170,16 +170,16 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    implementation fg.deobf("curse.maven:iammusicplayer-386380:5355594")
-//    implementation fg.deobf("curse.maven:create-songs-and-speakers-iam-music-player-fork-966928:5060267")
+//    implementation fg.deobf("curse.maven:iammusicplayer-386380:5355594")
+    implementation fg.deobf("curse.maven:create-songs-and-speakers-iam-music-player-fork-966928:5060267")
 
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
     implementation fg.deobf("curse.maven:otyacraft-engine-400337:4619771")
     implementation fg.deobf("curse.maven:cloth-config-348521:4973441")
 
-//    implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
-//    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
-//    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
     implementation fg.deobf("curse.maven:jei-238222:5630570")
     implementation fg.deobf("curse.maven:patchouli-306770:4966125")
