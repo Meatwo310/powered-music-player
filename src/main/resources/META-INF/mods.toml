@@ -62,11 +62,11 @@ description='''${mod_description}'''
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.${mod_id}]]
-    modId="iammusicplayer"
-    mandatory=true
-    ordering="NONE"
-    side="SERVER"
+#[[dependencies.${mod_id}]]
+#    modId="iammusicplayer"
+#    mandatory=true
+#    ordering="NONE"
+#    side="SERVER"
 
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
