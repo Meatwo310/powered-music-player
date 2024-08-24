@@ -16,11 +16,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = CassetteDeckBlockEntity.class, remap = false)
 public abstract class CassetteDeckBlockEntityMixin {
     @Shadow public abstract void setPlaying(boolean playing);
-
     @Shadow public abstract void setLoop(boolean loop);
 
     @Unique private static final Logger poweredmusicplayer$LOGGER = LogUtils.getLogger();
+    @Unique private static final int poweredmusicplayer$POWERED_TIME_THRESHOLD = 3;
+
     @Unique private boolean poweredmusicplayer$wasPowered = false;
+    /**
+     * The time the block has been powered
+     * Must be equal to or less than {@link #poweredmusicplayer$POWERED_TIME_THRESHOLD}
+     * */
+    @Unique private int poweredmusicplayer$poweredTime = 0;
 
     @Inject(method = "tick(" +
             "Lnet/minecraft/world/level/Level;" +
@@ -39,12 +45,42 @@ public abstract class CassetteDeckBlockEntityMixin {
             return;
         }
 
-        boolean powered = level.hasNeighborSignal(blockPos);
-        if (powered == be.poweredmusicplayer$wasPowered) return;
+//        if (be.poweredmusicplayer$poweredTime >= poweredmusicplayer$POWERED_TIME_THRESHOLD) {
+//            poweredmusicplayer$LOGGER.debug("Powered {} ticks or more", poweredmusicplayer$POWERED_TIME_THRESHOLD);
+//        } else if (be.poweredmusicplayer$poweredTime > 0) {
+//            poweredmusicplayer$LOGGER.debug("Powered {} ticks", be.poweredmusicplayer$poweredTime);
+//        }
 
-        if (powered) cassetteDeckBlockEntity.setMusicPositionAndRestart(0L);
-        cassetteDeckBlockEntity.setPlaying(powered);
-        be.setLoop(powered);
+        boolean powered = level.hasNeighborSignal(blockPos);
+        if (powered && be.poweredmusicplayer$poweredTime < poweredmusicplayer$POWERED_TIME_THRESHOLD) {
+            be.poweredmusicplayer$poweredTime++;
+            if (be.poweredmusicplayer$poweredTime == poweredmusicplayer$POWERED_TIME_THRESHOLD) {
+//                poweredmusicplayer$LOGGER.debug(
+//                        "Powered {} ticks! Enabling loop",
+//                        poweredmusicplayer$POWERED_TIME_THRESHOLD
+//                );
+                be.setLoop(true);
+            }
+        }
+
+        if (powered == be.poweredmusicplayer$wasPowered) return;
         be.poweredmusicplayer$wasPowered = powered;
+
+        if (powered) {
+            cassetteDeckBlockEntity.setMusicPositionAndRestart(0L);
+            cassetteDeckBlockEntity.setPlaying(true);
+        } else {
+            if (be.poweredmusicplayer$poweredTime >= poweredmusicplayer$POWERED_TIME_THRESHOLD) {
+//                poweredmusicplayer$LOGGER.debug("Unpowered! Stopping playback");
+                cassetteDeckBlockEntity.setPlaying(false);
+            } else {
+//                poweredmusicplayer$LOGGER.debug(
+//                        "Powered less than {} tick! Just plays once",
+//                        poweredmusicplayer$POWERED_TIME_THRESHOLD
+//                );
+                be.setLoop(false);
+            }
+            be.poweredmusicplayer$poweredTime = 0;
+        }
     }
 }
