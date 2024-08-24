@@ -182,6 +182,7 @@ dependencies {
 //    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
     implementation fg.deobf("curse.maven:jei-238222:5630570")
+    implementation fg.deobf("curse.maven:patchouli-306770:4966125")
 
     // Mixin dependency
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'

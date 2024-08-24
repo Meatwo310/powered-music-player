@@ -3,7 +3,9 @@
   "minVersion": "0.8",
   "package": "io.github.meatwo310.poweredmusicplayer.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
+  "mixins": [
+    "CassetteDeckBlockEntityMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
