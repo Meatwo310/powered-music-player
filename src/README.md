@@ -4,6 +4,7 @@ This mod lets you control [morimori0317's Music Player](https://www.curseforge.c
 
 ## Features
 Play music from start when redstone signal is on, stop when it's off.
+Pulse power to play music once.
 
 ## Requirements
 - Minecraft 1.20.1
