@@ -3,7 +3,7 @@
 This server-side mod lets you control [morimori0317's Music Player](https://www.curseforge.com/minecraft/mc-mods/iammusicplayer) and [billnotic's fork](https://www.curseforge.com/minecraft/mc-mods/create-songs-and-speakers-iam-music-player-fork) with redstone.
 
 ## Features
-Play music from start when redstone signal is on, stop when it's off.
+Cassete Deck plays music from start when redstone signal is on, stops when it's off.
 Pulse power to play music once.
 
 ## Requirements
